@@ -17,21 +17,24 @@ int main(void)
     int sum = checkSum(card, length);
     char digits = initialDigits(card, length);
     
-    if (length == 15 && digits == 'A')
+    if (sum % 10 == 0)
     {
-        printf("AMEX!\n");
-    }
-    else if (length == 13 || length == 16 && digits == 'V')
-    {
-        printf("VISA!\n");
-    }
-    else if (length == 16 && digits == 'V')
-    {
-        printf("MASTERCARD!\n");
-    }
-    else
-    {
-        printf("INVALID!!!\n");
+        if (length == 15 && digits == 'A')
+        {
+            printf("AMEX!\n");
+        }
+        else if ((length == 13 || length == 16) && digits == 'V')
+        {
+            printf("VISA!\n");
+        }
+        else if (length == 16 && digits == 'V')
+        {
+            printf("MASTERCARD!\n");
+        }
+        else
+        {
+            printf("INVALID!!!\n");
+        }
     }
     return 0;
 }
@@ -65,7 +68,7 @@ int checkLength(long long card)
 // implementing luhn's algorithm
 int checkSum(long long card, int length)
 {
-    char card_array[20];
+    int card_array[20];
     int value1 = 0; 
     int value2 = 0;
     int sum1 = 0;
@@ -73,6 +76,7 @@ int checkSum(long long card, int length)
     
     for(int i = 0; i < length; i++)
     {
+        //store the card number digits in reverse
         card_array[i] = card % 10;
         card = card / 10;
     }
