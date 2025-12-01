@@ -35,9 +35,10 @@ float readingLevel(char *reading)
     float space = 0;
     float letter = 0;
     float period = 0;
+    int length = strlen(reading);
 
     // looping until it hits the end of the input sting
-    for(index = 0; index < strlen(reading); index++)
+    for(index = 0; index < length; index++)
     {
         // running a condition to count the value occurances and using them to calculate the level
         if(reading[index] == ' ')
