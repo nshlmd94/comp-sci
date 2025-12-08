@@ -9,7 +9,7 @@ int main(void)
     printf("Enter a number:\n");
     scanf("%d", &user_input);
 
-    for(int index = 0; index < sizeof(array); index++)
+    for(int index = 0; index < (sizeof(array) / sizeof(array[0])); index++)
     {
         if(user_input == array[index])
         {
