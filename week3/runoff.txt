@@ -1,0 +1,84 @@
+// program to determine the winner of an election following the runoff selection
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_CANDIDATES 9
+#define MAX_VOTERS 100
+#define CHAR_LENGTH 50
+
+typedef struct
+{
+    char name[CHAR_LENGTH];
+    int votes;
+    bool eliminate;
+
+} candidate;
+
+int main(int argc, int argv[])
+{
+    int candidateCount = argc - 1;
+    if(candidateCount < 2 && candidateCount > 9)
+    {
+        printf("Usage: runoff [candidate ...]\n");
+        return 1;
+    }
+
+    candidate candidates[MAX_CANDIDATES];
+    for(int candidateIndex = 0; candidateIndex < candidateCount; candidateIndex++)
+    {
+        strcpy(candidates[candidateIndex].name, argv[candidateIndex + 1]);
+        candidates[candidateIndex].votes = 0;
+    }
+    
+    int voterCount = voters();
+    char* voterPreference[voterCount][candidateCount];
+
+
+    
+}
+
+int voters(void)
+{
+    int voterCount;
+    do
+    {
+        printf("Number of voters: ");
+        scanf("%d", &voterCount);
+    } while (voterCount > MAX_VOTERS);
+    return voterCount;
+}
+
+bool voteValidity(int voterCount, int candidateCount, candidate* candidates)
+{
+    char* voterPreference[voterCount][candidateCount];
+    bool validity = false;
+    for(int voterIndex = 0; voterIndex < voterCount; voterIndex++)
+    {   
+        for(int rankIndex = 0; rankIndex < candidateCount; rankIndex++)
+        {
+            printf("Rank %d", rankIndex);
+            scanf("%s", voterPreference[voterIndex][rankIndex]);
+
+            for(int candidateIndex = 0; candidateIndex < rankIndex; candidateIndex++)
+            {
+                if(strcmp(candidates[candidateIndex].name, voterPreference[voterIndex][rankIndex]))
+                {
+                    validity = true;
+                }
+            }
+        }
+        if(validity == false)
+        {
+            printf("Invalid Vote.\n");
+        }
+    }
+    return validity;
+}
+
+int tabulateVotes(char* voterPreference[][])
+{
+    
+}
