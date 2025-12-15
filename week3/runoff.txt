@@ -82,3 +82,30 @@ int tabulateVotes(char* voterPreference[][])
 {
     
 }
+
+
+------------------
+ tabulate:
+
+void tabulate(void)
+{
+    for(int voterIndex = 0; voterIndex < voterCount; voterIndex++)
+    {
+        for(int rankIndex = 0; rankIndex < candidateCount; rankIndex++)
+        {
+            for(int candidateIndex = 0; candidateIndex < candidateCount; candidateIndex++)
+            {   
+                if(candidateIndex == voterPreference[voterIndex][rankIndex])
+                {
+                    if(candidates[candidateIndex].eliminate == false)
+                    {
+                        candidates[candidateIndex].votes++;
+                    }
+                }
+            }
+            break;
+        }
+    }
+}
+
+
