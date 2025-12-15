@@ -63,9 +63,14 @@ int main(int argc, char* argv[])
     {
         for(int rankIndex = 0; rankIndex < candidateCount; rankIndex++)
         {
-            printf("Rank %d: ", rankIndex+1);
-            scanf("%s", candidateName);
-            vote(voterIndex, rankIndex, candidateName); // calling the vote function
+            bool preferenceSuccess = false;
+            
+            while(!preferenceSuccess)
+            {
+                printf("Rank %d: ", rankIndex+1);
+                scanf("%49s", candidateName); // bounding the input to the width limit
+                preferenceSuccess = vote(voterIndex, rankIndex, candidateName); // calling the vote function and running this only if there is success
+            }
         }
         printf("\n");
     }
@@ -87,6 +92,14 @@ int main(int argc, char* argv[])
     // this control flow loops until either a winner is declared or there is a tie among all the remaining candidates
     while(printWinner() == false)
     {
+        minVotes = findMinimum();
+
+        if(isTie(minVotes))
+        {
+            printf("It's a tie.\n");
+            return 2;
+        }
+
         /* DEBUGGING
         for(int candidateIndex = 0; candidateIndex < candidateCount; candidateIndex++)
         {
@@ -103,14 +116,6 @@ int main(int argc, char* argv[])
             printf("%s in while after elimination: %d\n", candidates[candidateIndex].name, candidates[candidateIndex].votes);
         }
         */
-
-        minVotes = findMinimum();
-
-        if(isTie(minVotes))
-        {
-            printf("It's a tie.\n");
-            return 2;
-        }
     }
     return 0; // exits the loop
 }
@@ -122,7 +127,7 @@ int voters(void)
     {
         printf("Number of voters: ");
         scanf("%d", &voterCount);
-    } while (voterCount > MAX_VOTERS);
+    } while (voterCount > MAX_VOTERS || voterCount < 1);
     return voterCount;
 }
 
@@ -136,6 +141,7 @@ bool vote(int voterIndex, int rankIndex, char* candidateName)
         {
             voterPreference[voterIndex][rankIndex] = candidateIndex; // YOU HAD USED THIS HERE - YOU JUST HAD TO REPEAT IT
             preferenceSuccess = true;
+            break;
         }
     }
     if(preferenceSuccess == false) // in case the person the voter included in their preference list is not a valid candidate
@@ -179,6 +185,7 @@ bool printWinner(void)
         {
             printf("%s\n", candidates[candidateIndex].name);
             majorityStatus = true;
+            break;
         }
     }
     return majorityStatus;
@@ -187,10 +194,10 @@ bool printWinner(void)
 // determines the least number of votes gotten by a candidate against the preference of the voter
 int findMinimum(void)
 {
-    int minVotes = candidates[0].votes;
+    int minVotes = MAX_VOTERS; // starting at a large sentinel so as to keep moving through the min loop
     for(int candidateIndex = 0; candidateIndex < candidateCount; candidateIndex++)
     {
-        if(candidates[candidateIndex].votes < minVotes)
+        if(candidates[candidateIndex].votes < minVotes && candidates[candidateIndex].eliminate == false)
         {
             minVotes = candidates[candidateIndex].votes;
         }
@@ -230,7 +237,7 @@ void eliminateLoser(int minVotes)
 {
     for(int candidateIndex = 0; candidateIndex < candidateCount; candidateIndex++)
     {
-        if(candidates[candidateIndex].votes == minVotes)
+        if(candidates[candidateIndex].votes == minVotes && candidates[candidateIndex].eliminate == false)
         {
             candidates[candidateIndex].eliminate = true;
             candidates[candidateIndex].votes = 0;
