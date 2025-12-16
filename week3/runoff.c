@@ -64,11 +64,11 @@ int main(int argc, char* argv[])
         for(int rankIndex = 0; rankIndex < candidateCount; rankIndex++)
         {
             bool preferenceSuccess = false;
-            
+
             while(!preferenceSuccess)
             {
                 printf("Rank %d: ", rankIndex+1);
-                scanf("%49s", candidateName); // bounding the input to the width limit
+                scanf("%49s", candidateName); // bounding the input to the width limit of 49 characters
                 preferenceSuccess = vote(voterIndex, rankIndex, candidateName); // calling the vote function and running this only if there is success
             }
         }
@@ -184,7 +184,7 @@ bool printWinner(void)
         if(candidates[candidateIndex].votes > majority && candidates[candidateIndex].eliminate == false)
         {
             printf("%s\n", candidates[candidateIndex].name);
-            majorityStatus = true;
+            majorityStatus = true; // breaks in case there is a match
             break;
         }
     }
@@ -194,7 +194,7 @@ bool printWinner(void)
 // determines the least number of votes gotten by a candidate against the preference of the voter
 int findMinimum(void)
 {
-    int minVotes = MAX_VOTERS; // starting at a large sentinel so as to keep moving through the min loop
+    int minVotes = MAX_VOTERS; // starting at the max sentinel, assuming all votes go to the same candidate, so as to keep moving through the min loop
     for(int candidateIndex = 0; candidateIndex < candidateCount; candidateIndex++)
     {
         if(candidates[candidateIndex].votes < minVotes && candidates[candidateIndex].eliminate == false)
