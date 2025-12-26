@@ -127,13 +127,17 @@ bool vote(int rank, string candidateName, int ranks[])
     return voteStatus;
 }
 
+// record the preference of a voter's for a candidate over the others
 void recordPreferences(int ranks[])
 {
-    for(int i = 0; i < candidateCount; i++)
+    for(int rankIndex = 0; rankIndex < candidateCount; rankIndex++)
     {
-        for(int j = 0; j < candidateCount; j++)
+        for(int candidateIndex = 0; candidateIndex < candidateCount; candidateIndex++)
         {
-            
+            if(rankIndex < candidateIndex)
+            {
+                preferences[ranks[rankIndex]][ranks[candidateIndex]]++;
+            }
         }
     }
 }
