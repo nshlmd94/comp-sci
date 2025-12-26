@@ -40,8 +40,8 @@ bool vote(int rank, string candidateName, int ranks[]);
 void recordPreferences(int ranks[]);
 void addPairs(void);
 void sortPairs(void);
-void lockPairs(void);
-void printWinner(void);
+//void lockPairs(void);
+//void printWinner(void);
 
 int main(int argc, char* argv[])
 {
@@ -79,10 +79,11 @@ int main(int argc, char* argv[])
     // ask for number of voters and keep nudging until it meets the range constraints
     do
     {
-        printf("Enter the number of voters: \n");
+        printf("Enter the number of voters: ");
         scanf("%d", &voterCount);
+        printf("\n");
     } 
-    while(voterCount < MAX_VOTERS && voterCount > 1);
+    while(voterCount > MAX_VOTERS && voterCount < 1);
 
     // capture the preferences
     int ranks[MAX_CANDIDATES];
@@ -91,20 +92,38 @@ int main(int argc, char* argv[])
         for(int rankIndex = 0; rankIndex < candidateCount; rankIndex++)
         {
             bool voteSuccess = false;
-            string name;
+            char name[NAME_LENGTH];
             while(!voteSuccess)
             {
                 printf("Rank %d: ", rankIndex+1);
-                scanf("%{49s", name);
+                scanf("%49s", name);
                 voteSuccess = vote(rankIndex, name, ranks);
             }
         }
         printf("\n");
         recordPreferences(ranks);
     }
+     
+    // CORRECT TILL HERE!!!! LET THE GAMES BEGIN!!!!!!!
 
-    // TO DO: Add the other functions
+    addPairs();
 
+    //debugging
+    for(int i = 0; i < pairCount; i++)
+    {
+        printf("Pair %d: winner = %d, loser = %d \n", i, pairs[i].winner, pairs[i].loser);
+    }
+    return 0;
+
+
+    sortPairs();
+    
+    //debugging
+    for(int i = 0; i < pairCount; i++)
+    {
+        printf("Pair %d: winner = %d, loser = %d \n", i, pairs[i].winner, pairs[i].loser);
+    }
+    return 0;
 }
 
 // function to check if the rank's vote is valid and if valid, then store it in an array as preference
@@ -144,14 +163,53 @@ void recordPreferences(int ranks[])
 
 void addPairs(void)
 {
-
+    pairCount = 0; // initializing it to 0, so it can used to index the pairs data structure
+    for(int i = 0; i < candidateCount; i++)
+    {
+        for(int j = 0; j < candidateCount; j++)
+        {
+            if(preferences[i][j] > preferences[j][i])
+            {
+                pairs[pairCount].winner = i;
+                pairs[pairCount].loser = j;
+                pairCount++;
+            }
+            else if(preferences[i][j] < preferences[j][i])
+            {
+                pairs[pairCount].winner = j;
+                pairs[pairCount].loser = i;
+                pairCount++;
+            }
+        }
+    }
 }
 
+// my implementation of selection sort to sort the pairs in descending order
 void sortPairs(void)
 {
+    int maxWinner = pairs[0].winner;
+    int maxLoser = pairs[0].loser;
 
+    for(int loopIndex = 0; loopIndex < pairCount-1; loopIndex++)
+    {
+        int tempIndex = loopIndex;
+        for(int elementIndex = loopIndex+1; elementIndex < pairCount; elementIndex++)
+        {
+            if(maxWinner < pairs[elementIndex].winner)
+            {
+                maxWinner = pairs[elementIndex].winner;
+                maxLoser = pairs[elementIndex].loser;
+                tempIndex = elementIndex;
+            }
+        }
+        pairs[tempIndex].winner = pairs[loopIndex].winner;
+        pairs[tempIndex].loser = pairs[loopIndex].loser;
+        pairs[loopIndex].winner = maxWinner;
+        pairs[loopIndex].loser = maxLoser;
+    }
 }
 
+/*
 void lockPairs(void)
 {
 
@@ -161,4 +219,4 @@ void printWinner(void)
 {
 
 }
-
+*/
