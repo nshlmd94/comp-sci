@@ -51,31 +51,37 @@ unsigned int hash(const char *word)
     int len = strlen(word);
     for (int i = 0; i < len; i++)
     {
-        sum = sum + toupper(word[i]);
+        sum = sum + toupper(word[i]) - toupper(word[0]);
     }
-    hashValue = sum;
-
+    if (sum > 0)
+    {
+        hashValue = sum / len;
+    }
+    else
+    {
+        hashValue = -sum / len;
+    }
     return hashValue;
 }
 
 // Loads dictionary into memory, returning true if successful, else false
 bool load(const char *dictionary)
 {
-    int index;
+    int index = 0;
     FILE *file = fopen(dictionary, "r");
-    if (file == NULL)
+    if(file == NULL)
     {
-        printf("File did not load.\n");
+        printf("File couldn't load - sorry.\n");
         return false;
     }
 
-    char buffer[LENGTH + 1];
-    int counter = 0;
+    char buffer[LENGTH+1];
     char c;
+    int counter = 0;
 
-    while (fread(&c, sizeof(c), 1, file) != 0)
+    while(fread(&c, sizeof(c), 1, file) != 0)
     {
-        if (c != '\n')
+        if(c != '\n')
         {
             buffer[counter] = c;
             counter++;
@@ -83,14 +89,15 @@ bool load(const char *dictionary)
         else
         {
             node *n = malloc(sizeof(node));
-            if (n == NULL)
+            if(n == NULL)
             {
+                printf("No memory was allocated.\n");
                 return false;
             }
             buffer[counter] = '\0';
             index = hash(buffer);
 
-            if (table[index] == NULL)
+            if(table[index] == NULL)
             {
                 strcpy(n->word, buffer);
                 countSize++;
@@ -98,31 +105,16 @@ bool load(const char *dictionary)
                 table[index] = n;
             }
             else
-            {
-                // adds it to the beginning of the linked list
+            {   
                 strcpy(n->word, buffer);
                 countSize++;
                 n->next = NULL;
                 n->next = table[index];
-                table[index] = n;
-                /* alternate way of doing this, but adds it to the "end" of the linked list
-                for (node *ptr = table[index]; ptr != NULL; ptr = ptr->next)
-                {
-                    if (ptr->next == NULL)
-                    {
-                        strcpy(n->word, buffer);
-                        countSize++;
-                        n->next = NULL;
-                        ptr->next = n;
-                        break;
-                    }
-                }
-                */
+                table[0] = n;
             }
             counter = 0;
         }
     }
-
     fclose(file);
     return true;
 }
