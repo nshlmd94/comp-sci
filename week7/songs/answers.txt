@@ -1,0 +1,44 @@
+SELECT AVG(energy), AVG(valence), AVG(danceability) FROM songs;
++-------------+--------------+-------------------+
+| AVG(energy) | AVG(valence) | AVG(danceability) |
++-------------+--------------+-------------------+
+| 0.65906     | 0.484443     | 0.71646           |
++-------------+--------------+-------------------+
+
+
+sqlite> SELECT DISTINCT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY energy) OVER () AS energy_median, PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY valence) OVER () AS valence_median, PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY danceability) OVER () AS energy_danceability FROM songs;
+Parse error: near "(": syntax error
+  SELECT DISTINCT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY energy) OVER () AS
+                                      error here ---^
+
+
+sqlite> SELECT sqlite_version();
++------------------+
+| sqlite_version() |
++------------------+
+| 3.51.0           |
++------------------+
+
+
+sqlite> SELECT energy FROM songs ORDER BY energy LIMIT 1 OFFSET (SELECT COUNT(*) FROM songs) / 2;
++--------+
+| energy |
++--------+
+| 0.679  |
++--------+
+sqlite> SELECT energy FROM songs ORDER BY valence LIMIT 1 OFFSET (SELECT COUNT(*) FROM songs) / 2; 
++--------+
+| energy |
++--------+
+| 0.613  |
++--------+
+sqlite> SELECT energy FROM songs ORDER BY danceability LIMIT 1 OFFSET (SELECT COUNT(*) FROM songs) / 2;
++--------+
+| energy |
++--------+
+| 0.57   |
++--------+
+
+
+
+Average is easily inflenced by extremes or outliers, therefore it is important to also look at median, mode / distribution, or idetifying distinct clusters of songs.
