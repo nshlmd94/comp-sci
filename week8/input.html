@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <script>
+
+            function greet()
+            {
+                let name = document.querySelector('#name').value;
+                alert('Hello there, ' + name);
+            }
+
+        </script>
+        <link href="hello.css" rel="stylesheet">
+        <title>Hello, World</title>
+    </head>
+    <body>
+        <form onsubmit="greet(); return false;">
+            <input autocomplete="off", autofocus id="name" placeholder="your name" type="text">
+            <input type="submit">
+        </form>
+    </body>
+
+</html>

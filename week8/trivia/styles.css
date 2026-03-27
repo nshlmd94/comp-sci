@@ -1,0 +1,91 @@
+body
+{
+    background-color: whitesmoke;
+    margin: 0px;
+}
+
+.page-heading
+{
+    height: 140px;
+    padding: 40px; 
+    background-color: #006effe2;
+    text-align: center;
+}
+
+#header
+{
+    text-align: center;
+    font-weight: 700;
+    font-size: 48px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: aliceblue;
+}
+
+ul
+{
+    margin: 80px;
+}
+
+.heading
+{
+    margin-top: 75px;
+}
+
+.line
+{
+    margin-right: 40px;
+    text-decoration: underline ;
+    color: black;
+    height: 0.2px;
+    border-color: black;
+    background-color: black;
+}
+
+.select-button
+{
+    background-color: rgb(193, 210, 244);
+    height: 40px;
+    width: 200px;
+    box-shadow: none;
+    border: none;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#text-field
+{
+    border-style: solid;
+    height: 35px;
+    width: 400px;
+    box-shadow: none;
+    border-color: grey;
+    box-shadow: none;
+    border-width: 1px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#check-box
+{
+    background-color: rgb(193, 210, 244);
+    height: 40px;
+    width: 200px;
+    box-shadow: none;
+    border: none;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.output1
+{
+    padding-top: 12px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.output2
+{
+    padding-top: 12px;
+    font-size: 20px;
+    font-weight: normal;
+}
