@@ -1,0 +1,128 @@
+html 
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    background-color: rgb(238, 238, 232);
+    padding: 10% 13%;
+    overflow-x: hidden;
+}
+
+h1
+{
+    font-size: clamp(24px, 8vw, 48px);
+    font-family: monospace;
+    color: crimson;
+}
+
+p
+{
+    line-height: 30px;
+    font-size: 16px;
+    font-family: monospace;
+    color: rgb(99, 95, 96);
+    text-align: justify;
+}
+
+.emoji-grid
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    column-gap: 10px;
+}
+
+.box
+{
+    width: fit-content;
+    font-size: 36px;
+    appearance: auto;
+    border: none;
+    background-color: rgb(238, 238, 232);
+}
+
+.box:hover
+{
+    transform: scale(1.5);
+}
+
+.video-container
+{
+    max-width: 75%;
+    margin: 0 auto;
+    aspect-ratio: 16/9;
+    border: 20px solid rgb(232, 232, 57);
+}
+
+.video-container iframe
+{
+    width: 100%;
+    height: 100%;
+}
+
+.timer
+{
+    
+    background-color: rgb(238, 238, 232);
+}
+
+.countdown
+{
+    width: 100%;
+    appearance: auto;
+    font-size: 48px;
+    border: 20px solid rgb(232, 232, 57);
+    color: deeppink;
+    background-color: rgb(232, 232, 57);
+}
+
+#countdown-text 
+{
+    display: inline-block;
+}
+
+.countdown:hover #countdown-text
+{
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.playlist-container
+{
+    max-width: 75%;
+    margin: 0 auto;
+    aspect-ratio: 16/9;
+    border: 20px solid rgb(232, 232, 57);
+}
+
+.playlist-container iframe
+{
+    width: 100%;
+    height: 100%;
+}
+
+.img-container
+{
+    max-width: 75%;
+    margin: 0 auto;
+    aspect-ratio: 16/9;
+    border: 20px solid rgb(232, 232, 57);
+}
+
+.img-container img
+{
+    width: 100%;
+    height: 100%;
+}
+
+#background
+{
+    background-image: url("tropical-background.png");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
