@@ -33,16 +33,16 @@ h3
 {
     box-sizing: border-box;
     width: 250px;
-    height: 30px;
+    height: 40px;
 }
 
 .btn
 {
     box-sizing: border-box;
     width: 250px;
-    height: 30px;
+    height: 40px;
     border: none;
-    background-color: #b8d0fd;
+    background-color: #c1d5fa;
     border-color: b8d0fd;
     color: #252323;
     font-weight: 600;
@@ -75,7 +75,7 @@ thead
 
 tbody tr:nth-child(odd)
 {
-    background-color: #b8d0fd;
+    background-color: #c8d7f1;
 }
 
 th, td
