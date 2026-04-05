@@ -1,0 +1,89 @@
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+#header
+{
+    background-color: rgb(76, 132, 237);
+    padding: 75px;
+    text-align: center;
+    color: #ffffff;
+}
+
+h1
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 48px;
+}
+
+h3
+{
+    font-size: 28px;
+}
+
+#userinput
+{
+    padding-top: 40px;
+    text-align: center;
+}
+
+.textcell
+{
+    box-sizing: border-box;
+    width: 250px;
+    height: 30px;
+}
+
+.btn
+{
+    box-sizing: border-box;
+    width: 250px;
+    height: 30px;
+    border: none;
+    background-color: #b8d0fd;
+    border-color: b8d0fd;
+    color: #252323;
+    font-weight: 600;
+}
+
+.btn:hover
+{
+    cursor: pointer;
+}
+
+#birthday
+{
+    padding-top: 40px;
+    text-align: center;
+}
+
+table
+{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: inherit;
+    text-align: center;
+}
+
+thead
+{
+    font-size: large;
+}
+
+tbody tr:nth-child(odd)
+{
+    background-color: #b8d0fd;
+}
+
+th, td
+{
+    padding: 10px;
+}
+
+#error
+{
+    color: red;
+}

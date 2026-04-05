@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="static/style.css" rel="stylesheet">
+        <script href="static/script.js"></script>
+        <title>Birthdays</title>
+    </head>
+    <body>
+        <div id="header">
+            <h1>Birthdays</h1>
+        </div>
+        <div id="userinput">
+            <h3>Add a Birthday</h3>
+            <form class="box" action="/" method="post">
+                <input class="textcell" autocomplete="off" type="text" name="name" placeholder="Name">
+                <input class="textcell" autocomplete="off" type="number" name="month" placeholder="Month" min="1" max="12">
+                <input class="textcell" autocomplete="off" type="number" name="day" placeholder="Day" min="1" max="31">
+                <input class="btn" type="submit" value="Submit">
+            </form>
+            {% if error %}
+                <p id="error">{{ error }}</p>
+            {% endif %}
+        </div>
+        <div id="birthday">
+            <h3>All Birthdays</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Birthday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for birthday in birthdays %}
+                    <tr>
+                        <td>{{ birthday.name }}</td>
+                        <td>{{ birthday.month }} / {{ birthday.day }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
