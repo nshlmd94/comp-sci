@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="static/style.css" rel="stylesheet">
-        <script href="static/script.js"></script>
+        <script src="static/script.js"></script>
         <title>Birthdays</title>
     </head>
     <body>
@@ -38,10 +38,16 @@
                     <tr>
                         <td>{{ birthday.name }}</td>
                         <td>{{ birthday.month }} / {{ birthday.day }}</td>
-                        <td id="del-form">
+                        <td class="edit-form">
+                            <form action="/update", method="post">
+                                <input name="id" type="hidden" value="{{ birthday.id }}">
+                                <button class="edit-btn" data-id="{{ birthday.id }}" type="submit">Edit</button>
+                            </form>
+                        </td>
+                        <td class="del-form">
                             <form action="/delete", method="post">
                                 <input name="id" type="hidden" value="{{ birthday.id }}">
-                                <button id="del-btn" type="submit">Delete</button>
+                                <button class="del-btn">Delete</button>
                             </form>
                         </td>
                     </tr>

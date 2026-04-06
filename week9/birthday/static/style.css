@@ -88,20 +88,26 @@ th, td
     color: red;
 }
 
-#del-form
+.del-form, .edit-form
 {
     background-color: #ffffff;
     width: 50px;
 }
 
-#del-btn
+.del-btn, .edit-btn
 {
     background-color: #ffffff;
     border: #ffffff;
 }
 
-#del-btn:hover
+.del-btn:hover
 {
     cursor: pointer;
     color: red;
+}
+
+.edit-btn:hover
+{
+    cursor: pointer;
+    color: rgb(76, 132, 237);
 }
