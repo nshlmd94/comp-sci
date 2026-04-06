@@ -39,6 +39,12 @@ def layout():
         insertBirthdays(name, month, day)
         return redirect("/")
     
+@app.route("/delete", methods=['POST'])
+def remove():
+    id = request.form.get("id")
+    deleteBirthdays(id)
+    return redirect("/")
+    
 def getBirthdays():
     sqliteConnection = sqlite3.connect("birthdays.db")
     sqliteConnection.row_factory = sqlite3.Row
@@ -51,5 +57,19 @@ def insertBirthdays(name, month, day):
     sqliteConnection = sqlite3.connect("birthdays.db")
     cursor = sqliteConnection.cursor()
     cursor.execute("INSERT INTO birthdays (name, month, day) VALUES (?, ?, ?)", (name, month, day))
+    sqliteConnection.commit()
+    sqliteConnection.close()
+    
+def updateBirthdays():
+    sqliteConnection = sqlite3.connect("birthdays.db")
+    cursor = sqliteConnection.cursor()
+    cursor.execute("UPDATE FROM birthdays WHERE id = ?", id)
+    sqliteConnection.commit()
+    sqliteConnection.close()
+    
+def deleteBirthdays(id):
+    sqliteConnection = sqlite3.connect("birthdays.db")
+    cursor = sqliteConnection.cursor()
+    cursor.execute("DELETE FROM birthdays WHERE id = ?", [id])
     sqliteConnection.commit()
     sqliteConnection.close()

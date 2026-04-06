@@ -87,3 +87,21 @@ th, td
 {
     color: red;
 }
+
+#del-form
+{
+    background-color: #ffffff;
+    width: 50px;
+}
+
+#del-btn
+{
+    background-color: #ffffff;
+    border: #ffffff;
+}
+
+#del-btn:hover
+{
+    cursor: pointer;
+    color: red;
+}
