@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <h1>Buy</h1>
+{% endblock %}
+
+
+{% block content %}
+    <form class="space w-25 mx-auto mt-5" action="/buy" method="POST">
+        <div class="mb-3">
+            <input class="form-control w-100" id="formGroupExampleInput0" type="text" name="ticker" placeholder="Enter ticker of the stock">
+        </div>
+        <div class="mb-3">
+            <input class="form-control w-100" id="formGroupExampleInput1" type="number" name="quantity" placeholder="1">
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-outline-success d-block w-100" type="submit">Buy</button>
+        </div>
+    </form>
+
+    {% if result %}
+    <div class="w-50 mx-auto" style="margin-top: 80px;">
+        <table class="table table-responsive-md table-striped">
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ result.ticker }}</td>
+                    <td>{{ result.quantity }}</td>
+                    <td>{{ "%.2f" | format(result.price) }}</td>
+                    <td>{{ "%.2f" | format(result.total) }}</td>
+                </tr>
+                <tr>
+                    <td>Cash</td>
+                    <td>{{ "%.2f" | format(result.amount) }}</td>
+                </tr>
+                <tr>
+                    <td>TOTAL</td>
+                    <td>{{ "%.2f" | format(result.remainder) }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}

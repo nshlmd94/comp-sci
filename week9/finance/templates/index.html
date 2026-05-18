@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<p>Index</p>
+{% endblock %}
+
+{% block content %}
+<div class="w-50 mx-auto" style="margin-top: 80px;">
+    <table class="table table-responsive-md table-striped">
+        <thead>
+            <tr>
+                <th>Ticker</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for holding in holdings %}
+            <tr>
+                <td>{{ holding.Ticker | upper }}</td>
+                <td>{{ holding.Quantity }}</td>
+                <td>{{ "%.2f" | format(holding.Price) }}</td>
+                <td>{{ "%.2f" | format(holding.Total) }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>Cash</td>
+                <td>{{ "%.2f" | format(cash.cash) }}</td>
+            </tr>
+            <tr>
+                <td>TOTAL</td>
+                <td>{{ "%.2f" | format(total) }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <h1>Error</h1>
+{% endblock %}
+
+{% block content %}
+    <img alt="{{ top }}" class="rounded mx-auto d-block" src="https://api.memegen.link/images/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?background=https://raw.githubusercontent.com/nshlmd94/images/main/XGxcRN9.jpeg">
+{% endblock %}

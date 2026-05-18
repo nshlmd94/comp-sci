@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<p>History</p>
+{% endblock %}
+
+{% block content %}
+<div class="w-50 mx-auto" style="margin-top: 80px;">
+    <table class="table table-responsive-md table-striped">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Ticker</th>
+                <th>Shares</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row.timestamp }}</td>
+                <td>{{ row.ticker | upper }}</td>
+                <td>{{ row.quantity }}</td>
+                <td>{{ "%.2f" | format(row.price) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

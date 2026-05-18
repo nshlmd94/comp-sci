@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+<form class="space w-25 mx-auto mt-5" action="/register" method="post">
+    <div class="mb-3">
+        <h1>Register</h1>
+    </div>
+    <div class="mb-3">
+        <input type="text" class="form-control w-100" id="formGroupExampleInput" name="username" placeholder="Enter Username">
+    </div>
+    <div class="mb-3">
+        <input type="password" class="form-control w-100" id="formGroupExampleInput2" name="password" placeholder="Enter Password">
+    </div>
+    <div class="mb-3">
+        <input type="password" class="form-control w-100" id="formGroupExampleInput3" name="confirm_password" placeholder="Reconfirm Password">
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-outline-success d-block w-100" type="submit">Register</button>
+    </div>
+</form>
+{% endblock %}

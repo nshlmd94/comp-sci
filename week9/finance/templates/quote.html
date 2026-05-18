@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <h1>Quote</h1>
+{% endblock %}
+
+{% block content %}
+    <form class="space w-25 mx-auto mt-5" action="/quote" method="POST">
+        <div class="mb-3">
+            <input class="form-control w-100" id="formGroupExampleInput" type="text" name="ticker" placeholder="Enter ticker here">
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-outline-success d-block w-100" type="submit">Quote</button>
+        </div>
+    </form>
+    {% if result %}
+        <p class="text-center space w-25 mx-auto mt-5">The value of 1 share of {{ result.Name }} is {{result.Currency}} {{ "%.2f" | format(result.Price) }}.</p>
+    {% endif %}
+{% endblock %}

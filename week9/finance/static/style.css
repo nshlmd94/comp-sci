@@ -1,0 +1,65 @@
+:root {
+    --brand-color: rgb(8, 151, 87);
+    --nav-bg: rgb(243, 243, 243);
+    --nav-border: rgb(205, 205, 205);
+    --text-h3: rgb(126, 126, 126);
+}
+
+body {
+    margin: 0;
+    padding: 0px;
+}
+
+nav {
+    
+    background-color: var(--nav-bg);
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar-brand {
+    color: var(--brand-color);
+    font-family: 'Sofia', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.border-bottom {
+    border-color: var(--nav-border);
+}
+
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
+
+h3 {
+    color: var(--text-h3);
+    font-family: 'Sofia', sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+h1 {
+    color: var(--text-h3);
+    font-family: 'Sofia', sans-serif;
+}
+
+.logo {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+footer .fixed-bottom {
+    padding-bottom: 20px !important;
+}
+
+.space {
+    padding-top: 75px;;
+}
+
+.form-control {
+    width: 20%;
+}
