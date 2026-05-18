@@ -260,9 +260,7 @@ def sell():
         totalSale = db.execute("SELECT SUM(quantity) FROM purchases WHERE ticker = ? AND user_id = ? AND quantity < 0", (name, user_id)).fetchone()
         totalSold = totalSale[0] if totalSale[0] else 0
         totalLeft = totalBuys[0] + totalSold
-        
-        print(f"user_id: {user_id}, name: {name}, saleQuantity: {saleQuantity}, totalLeft: {totalLeft}, totalSold: {totalSold}")
-        
+                
         if totalLeft >= saleQuantity and -totalSold > 0:
             runningCount = 0
             lowerRange = 0
